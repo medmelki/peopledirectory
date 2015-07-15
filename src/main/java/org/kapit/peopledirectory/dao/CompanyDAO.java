@@ -12,7 +12,6 @@ public interface CompanyDAO {
     void deleteCompany(Company company) throws DAOException;
     void findAllCompanies() throws DAOException;
 
-    void addDepartment(Company company, Department department) throws DAOException;
     void deleteDepartment(Company company, Department department) throws DAOException;
 
     void addEmployee(Company company, Department department, Employee employee) throws DAOException;
