@@ -1,9 +1,7 @@
 package org.kapit.peopledirectory;
 
 import org.kapit.peopledirectory.dao.CompanyDAO;
-import org.kapit.peopledirectory.dao.CompanyDAO2;
 import org.kapit.peopledirectory.dao.impl.CompanyDAOImpl;
-import org.kapit.peopledirectory.dao.impl.CompanyDAOImpl2;
 import org.kapit.peopledirectory.exceptions.DAOException;
 import org.kapit.peopledirectory.model.Company;
 import org.kapit.peopledirectory.model.Department;
@@ -48,7 +46,7 @@ public class Tester {
         Company company = new Company(1, "kapit", departments1);
         Company company2 = new Company(2, "eXo", departments2);
 
-        CompanyDAO2 companyDAO = new CompanyDAOImpl2();
+        CompanyDAO companyDAO = new CompanyDAOImpl();
         try {
             companyDAO.addCompany(company);
             companyDAO.addCompany(company2);
@@ -69,11 +67,14 @@ public class Tester {
         try {
             //companyDAO.deleteDepartment(company, department2);
             //System.out.println("-----After Deletion");
-//            Employee emp7 = new Employee(7,"zeineb");
+            Employee emp7 = new Employee(7,"zeineb");
 //            companyDAO.deleteEmployee(company,department2, emp4);
 //            companyDAO.addEmployee(company,department2, emp7);
-            companyDAO.deleteCompany("eXo");
-            companyDAO.deleteDepartment("kapit","science");
+            //companyDAO.deleteCompany("eXo");
+            //companyDAO.deleteDepartment("kapit","science");
+            //companyDAO.deleteDepartment("kapit","arts");
+            //companyDAO.deleteEmployee("kapit", 1, "rafik");
+            companyDAO.addEmployee("kapit",1, emp7);
             companyDAO.findAllCompanies();
         } catch (DAOException e) {
             e.printStackTrace();

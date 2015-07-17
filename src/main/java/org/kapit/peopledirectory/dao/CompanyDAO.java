@@ -9,12 +9,12 @@ import org.kapit.peopledirectory.model.Employee;
 public interface CompanyDAO {
 
     void addCompany(Company company) throws DAOException;
-    void deleteCompany(Company company) throws DAOException;
+    void deleteCompany(String companyName) throws DAOException;
     void findAllCompanies() throws DAOException;
 
-    void deleteDepartment(Company company, Department department) throws DAOException;
+    void deleteDepartment(String companyName, String departmentName) throws DAOException;
 
-    void addEmployee(Company company, Department department, Employee employee) throws DAOException;
-    void deleteEmployee(Company company, Department department, Employee employee) throws DAOException;
+    void addEmployee(String companyName, int departmentId, Employee employee) throws DAOException;
+    void deleteEmployee(String companyName, int departmentId, String employeeName) throws DAOException;
 
 }
