@@ -7,6 +7,8 @@
     <groupId>org.kapit</groupId>
     <artifactId>peopledirectory</artifactId>
     <version>1.0</version>
+    <packaging>war</packaging>
+    <name>peopledirectory</name>
 
     <properties>
         <jersey.version>2.8</jersey.version>
@@ -42,7 +44,7 @@
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-catalina</artifactId>
-            <version>7.0.34</version>
+            <version>7.0.63</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

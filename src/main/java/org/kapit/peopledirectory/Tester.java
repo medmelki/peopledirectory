@@ -50,7 +50,10 @@ public class Tester {
         try {
             companyDAO.addCompany(company);
             companyDAO.addCompany(company2);
-            //companyDAO.findAllCompanies();
+            for (Company company1 : companyDAO.findAllCompanies()) {
+                System.out.println(company1);
+            }
+            ;
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -63,7 +66,7 @@ public class Tester {
 //        } catch (DAOException e) {
 //            e.printStackTrace();
 //        }
-        System.out.println("-----------------------------Removing Department : Company arts");
+        /*System.out.println("-----------------------------Removing Department : Company arts");
         try {
             //companyDAO.deleteDepartment(company, department2);
             //System.out.println("-----After Deletion");
@@ -78,7 +81,7 @@ public class Tester {
             companyDAO.findAllCompanies();
         } catch (DAOException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
 

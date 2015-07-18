@@ -8,6 +8,11 @@ import org.kapit.peopledirectory.model.Company;
 import org.kapit.peopledirectory.model.Department;
 import org.kapit.peopledirectory.model.Employee;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 
 public class CompanyDAOImpl implements CompanyDAO {
 
@@ -50,11 +55,18 @@ public class CompanyDAOImpl implements CompanyDAO {
     }
 
     @Override
-    public void findAllCompanies() throws DAOException {
-        DBCursor cursor = collection.find();
-        while (cursor.hasNext()) {
-            System.out.println(cursor.next());
+    public Set<Company> findAllCompanies() throws DAOException {
+        Iterator<DBObject> iterator = collection.find().iterator();
+        Set<Company> companies = new HashSet<Company>();
+        while (iterator.hasNext()) {
+            BasicDBObject companyDB = (BasicDBObject) iterator.next();
+            Company company = new Company();
+            company.setId(Integer.parseInt(companyDB.get("_id").toString()));
+            company.setName(companyDB.get("name").toString());
+            company.setDepartments((ArrayList)companyDB.get("departments"));
+            companies.add(company);
         }
+        return companies;
     }
 
     @Override
