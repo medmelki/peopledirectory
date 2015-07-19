@@ -53,7 +53,6 @@ public class Tester {
             for (Company company1 : companyDAO.findAllCompanies()) {
                 System.out.println(company1);
             }
-            ;
         } catch (DAOException e) {
             e.printStackTrace();
         }
