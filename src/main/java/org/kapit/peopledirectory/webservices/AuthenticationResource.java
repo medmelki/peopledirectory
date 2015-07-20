@@ -8,7 +8,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.kapit.peopledirectory.dao.impl.UserDAOImpl;
-import org.kapit.peopledirectory.exceptions.DAOException;
 import org.kapit.peopledirectory.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +46,7 @@ public class AuthenticationResource {
 				} else {
 					LG.error("Combinaison Nom d'utilisateur/Mot de passe erronee");
 				}
-		} catch (DAOException e) {
+		} catch (Exception e) {
 			LG.error(e.getMessage());
 		}
 		

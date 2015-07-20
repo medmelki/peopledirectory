@@ -3,7 +3,6 @@ package org.kapit.peopledirectory.dao.impl;
 import com.mongodb.*;
 import org.kapit.peopledirectory.dao.CompanyDAO;
 import org.kapit.peopledirectory.dao.Connection;
-import org.kapit.peopledirectory.exceptions.DAOException;
 import org.kapit.peopledirectory.model.Company;
 import org.kapit.peopledirectory.model.Department;
 import org.kapit.peopledirectory.model.Employee;
@@ -21,7 +20,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 
 
     @Override
-    public void addCompany(Company company) throws DAOException {
+    public void addCompany(Company company) throws Exception {
         DBObject companyDB = new BasicDBObject();
         companyDB.put("_id", company.getId());
         companyDB.put("name", company.getName());
@@ -45,7 +44,7 @@ public class CompanyDAOImpl implements CompanyDAO {
     }
 
     @Override
-    public void deleteCompany(String companyName) throws DAOException {
+    public void deleteCompany(String companyName) throws Exception {
 
         BasicDBObject document = new BasicDBObject();
         if (companyName != null) {
@@ -55,7 +54,7 @@ public class CompanyDAOImpl implements CompanyDAO {
     }
 
     @Override
-    public Set<Company> findAllCompanies() throws DAOException {
+    public Set<Company> findAllCompanies() throws Exception {
         Iterator<DBObject> iterator = collection.find().iterator();
         Set<Company> companies = new HashSet<Company>();
         while (iterator.hasNext()) {
@@ -70,20 +69,20 @@ public class CompanyDAOImpl implements CompanyDAO {
     }
 
     @Override
-    public void deleteDepartment(String companyName, String departmentName) throws DAOException {
+    public void deleteDepartment(String companyName, String departmentName) throws Exception {
 
         collection.update(new BasicDBObject("name", companyName), new BasicDBObject("$pull", new BasicDBObject("departments", new BasicDBObject("name", departmentName))));
     }
 
     @Override
-    public void addEmployee(String companyName, int departmentId, Employee employee) throws DAOException {
+    public void addEmployee(String companyName, int departmentId, Employee employee) throws Exception {
 
         collection.update(new BasicDBObject("name", companyName), new BasicDBObject("$push", new BasicDBObject("departments.0.employees", new BasicDBObject("_id", employee.getId()).append("name", employee.getName()))));
 //        collection.update(new BasicDBObject("name", companyName), new BasicDBObject("$push", new BasicDBObject("departments", new BasicDBObject("employees", new BasicDBObject("name", employee.getName()).append("_id", employee.getId())))));
     }
 
     @Override
-    public void deleteEmployee(String companyName, int departmentId, String employeeName) throws DAOException {
+    public void deleteEmployee(String companyName, int departmentId, String employeeName) throws Exception {
 
 //        collection.update(new BasicDBObject("name", companyName).append("departments.name", departmentName), new BasicDBObject("$pull", new BasicDBObject("departments", new BasicDBObject("employees", new BasicDBObject("name", employeeName)))));
 //        DBCursor cursor = collection.find(new BasicDBObject("name", companyName).append("departments.name", departmentName));

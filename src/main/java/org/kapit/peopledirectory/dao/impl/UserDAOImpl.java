@@ -5,7 +5,6 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import org.kapit.peopledirectory.dao.Connection;
 import org.kapit.peopledirectory.dao.UserDAO;
-import org.kapit.peopledirectory.exceptions.DAOException;
 import org.kapit.peopledirectory.model.User;
 
 import java.util.HashSet;
@@ -19,7 +18,7 @@ public class UserDAOImpl implements UserDAO {
 
 
     @Override
-    public void addUser(User user) throws DAOException {
+    public void addUser(User user) throws Exception {
 
         DBObject userDB = new BasicDBObject("_id", user.getId());
         userDB.put("username", user.getUsername());
@@ -29,14 +28,14 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void removeUser(User user) throws DAOException {
+    public void removeUser(User user) throws Exception {
 
         DBObject query = new BasicDBObject("_id", user.getId());
         collection.remove(query);
     }
 
     @Override
-    public void updateUser(User user) throws DAOException {
+    public void updateUser(User user) throws Exception {
 
         DBObject userDB = new BasicDBObject("_id", user.getId());
         userDB.put("username", user.getUsername());
@@ -47,7 +46,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User findUser(String id) throws DAOException {
+    public User findUser(String id) throws Exception {
 
         DBObject query = new BasicDBObject("_id", id);
         DBObject userDB = collection.findOne(query);
@@ -68,7 +67,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public Set<User> findAllUsers() throws DAOException {
+    public Set<User> findAllUsers() throws Exception {
 
         Iterator<DBObject> iterator = collection.find().iterator();
         Set<User> users = new HashSet<>();
@@ -101,7 +100,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User findUserByUsername(String username) throws DAOException {
+    public User findUserByUsername(String username) throws Exception {
 
         DBObject query = new BasicDBObject("username", username);
         DBObject userDB = collection.findOne(query);

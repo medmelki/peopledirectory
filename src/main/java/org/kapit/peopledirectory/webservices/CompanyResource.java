@@ -11,9 +11,7 @@ import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import org.kapit.peopledirectory.dao.CompanyDAO;
 import org.kapit.peopledirectory.dao.impl.CompanyDAOImpl;
-import org.kapit.peopledirectory.exceptions.DAOException;
 import org.kapit.peopledirectory.model.Company;
-import org.kapit.peopledirectory.model.Department;
 import org.kapit.peopledirectory.model.Employee;
 import org.kapit.peopledirectory.webservices.elements.BooleanResponse;
 import org.kapit.peopledirectory.webservices.elements.CompanyResponse;
@@ -76,7 +74,7 @@ public class CompanyResource {
                 companies.add(response);
 
             }
-        } catch (DAOException e) {
+        } catch (Exception e) {
 
             LG.error(e.getMessage());
         }
@@ -103,7 +101,7 @@ public class CompanyResource {
             companyDAO.addEmployee(companyName, departmentId, employee);
             LG.debug("Nouveau employé enregistré");
 
-        } catch (DAOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             response.setValue(false);
         }
@@ -128,7 +126,7 @@ public class CompanyResource {
             companyDAO.deleteEmployee(companyName, departmentId, name);
             LG.debug("Employé " + name + " supprimé");
 
-        } catch (DAOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             response.setValue(false);
         }
@@ -151,7 +149,7 @@ public class CompanyResource {
             companyDAO.deleteDepartment(companyName, name);
             LG.debug("Département " + name + " supprimé");
 
-        } catch (DAOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             response.setValue(false);
         }
@@ -173,7 +171,7 @@ public class CompanyResource {
             companyDAO.deleteCompany(companyName);
             LG.debug("Company " + companyName + " supprimé");
 
-        } catch (DAOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             response.setValue(false);
         }

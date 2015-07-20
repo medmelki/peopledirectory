@@ -2,7 +2,6 @@ package org.kapit.peopledirectory;
 
 import org.kapit.peopledirectory.dao.CompanyDAO;
 import org.kapit.peopledirectory.dao.impl.CompanyDAOImpl;
-import org.kapit.peopledirectory.exceptions.DAOException;
 import org.kapit.peopledirectory.model.Company;
 import org.kapit.peopledirectory.model.Department;
 import org.kapit.peopledirectory.model.Employee;
@@ -53,7 +52,7 @@ public class Tester {
             for (Company company1 : companyDAO.findAllCompanies()) {
                 System.out.println(company1);
             }
-        } catch (DAOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
