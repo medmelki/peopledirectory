@@ -27,13 +27,13 @@ public class AuthenticationResource {
 	 */
 	
 	@GET
-	@Path("/{username}/{encryptedPassword}")
+	@Path("/{username}/{password}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@PermitAll
 	public User authentify(@PathParam("username") String username,
-			@PathParam("encryptedPassword") String password) {
+			@PathParam("password") String password) {
 
-		LG.debug("Authentification de l'utilisateur {} en cours avec mot de passe hache : {}", username, password);
+		LG.debug("Authentification de l'utilisateur {} en cours avec mot de passe : {}", username, password);
 
 		try {
 			User user = new UserDAOImpl().findUserByUsername(username);
